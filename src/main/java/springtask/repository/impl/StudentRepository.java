@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class StudentRepository implements GenericRepository<Student, Long> {
-    EntityManagerFactory entityManagerFactory;
+    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
     public void setEntityManagerFactory(@Qualifier("getEntityManager") EntityManagerFactory entityManagerFactory) {

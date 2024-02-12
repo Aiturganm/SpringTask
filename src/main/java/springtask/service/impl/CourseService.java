@@ -12,12 +12,9 @@ import java.util.List;
 
 @Service
 public class CourseService implements GenericService<Course, Long> {
-    private final GenericRepository genericRepository;
-
     @Autowired
-    public CourseService(@Qualifier("courseRepository") GenericRepository genericRepository) {
-        this.genericRepository = genericRepository;
-    }
+    @Qualifier("courseRepository")
+    private GenericRepository genericRepository;
 
     @Override
     public Course save(Course entity) {

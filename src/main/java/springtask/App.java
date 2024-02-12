@@ -23,7 +23,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        GenericService<Course, Long> courseService = new CourseService(new CourseRepository());
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfig.class);
+        CourseService courseService = context.getBean("courseService", CourseService.class);
 //        System.out.println(courseService.save(new Course("Java", 14000, LocalDate.of(2023, 10, 1))));
 //        System.out.println(courseService.save(new Course("Flutter", 15000, LocalDate.of(2024, 02, 9))));
 //        System.out.println(courseService.save(new Course("JS", 14000, LocalDate.of(2024, 1, 1))));
@@ -39,7 +40,7 @@ public class App
 
 //        courseService.deleteById(4L);
 
-        GenericService<Lesson, Long> lessonService = new LessonService();
+        LessonService lessonService = context.getBean("lessonService", LessonService.class);
 //        lessonService.save(new Lesson("Varargs", "JAVA Lesson", "https://varargs2u457.com", LocalDate.of(2024, 2, 10), true));
 //        lessonService.save(new Lesson("CSS", "JS Lesson", "https://jscsspeaksoft.com", LocalDate.of(2024, 1, 28), false));
 //        lessonService.save(new Lesson("Arrays", "JAVA Lesson", "https://arrays754rh.com", LocalDate.of(2024, 1, 19), true));
@@ -55,7 +56,6 @@ public class App
 
 //        lessonService.deleteById(2L);
 
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfig.class);
         GenericService<Student, Long> studentService = context.getBean("studentService", StudentService.class);
 //        studentService.save(new Student("Kasymbekov Dastan", "dastan@gmail.com", 2004, courseService.findById(2L)));
 //        studentService.save(new Student("Kanybek uulu Sanjar", "kanybekuulu04@gmail.com", 2005, courseService.findById(1L)));

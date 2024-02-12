@@ -17,7 +17,6 @@ public class StudentService implements GenericService<Student, Long> {
         this.genericRepository = genericRepository;
     }
 
-
     @Override
     public Student save(Student entity) {
         return (Student) genericRepository.save(entity);

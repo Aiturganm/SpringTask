@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import springtask.config.HibernateConfig;
 import springtask.entity.Course;
@@ -14,13 +15,10 @@ import java.util.List;
 
 @Repository
 public class CourseRepository implements GenericRepository<Course, Long> {
-    @PersistenceContext
-    private EntityManagerFactory entityManagerFactory = HibernateConfig.getEntityManager();
+    @Autowired
+    @Qualifier("getEntityManager")
+    private EntityManagerFactory entityManagerFactory;
 
-//    @Autowired
-//    public CourseRepository(EntityManagerFactory entityManagerFactory) {
-//        this.entityManagerFactory = entityManagerFactory;
-//    }
 
     @Override
     public Course save(Course entity) {

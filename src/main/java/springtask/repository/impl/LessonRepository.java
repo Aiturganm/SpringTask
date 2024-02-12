@@ -17,9 +17,11 @@ import java.util.List;
 @Repository
 @Scope("singleton")
 public class LessonRepository implements GenericRepository<Lesson, Long> {
+    private final EntityManagerFactory entityManagerFactory;
     @Autowired
-    @Qualifier("getEntityManager")
-    EntityManagerFactory entityManagerFactory = HibernateConfig.getEntityManager();
+    public LessonRepository(@Qualifier("getEntityManager") EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
     @Override
     public Lesson save(Lesson entity) {

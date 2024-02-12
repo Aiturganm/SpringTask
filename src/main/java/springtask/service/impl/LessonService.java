@@ -14,9 +14,12 @@ import java.util.List;
 @Service
 @Scope("singleton")
 public class LessonService implements GenericService<Lesson, Long> {
+    private final GenericRepository<Lesson, Long> genericService;
+
     @Autowired
-    @Qualifier("lessonRepository")
-    private final GenericRepository<Lesson, Long> genericService = new LessonRepository();
+    public LessonService(@Qualifier("lessonRepository") GenericRepository<Lesson, Long> genericService) {
+        this.genericService = genericService;
+    }
     @Override
     public Lesson save(Lesson entity) {
         return genericService.save(entity);

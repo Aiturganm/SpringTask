@@ -13,7 +13,6 @@ import springtask.entity.Lesson;
 import springtask.entity.Student;
 
 import java.util.Properties;
-
 @org.springframework.context.annotation.Configuration
 @ComponentScan(basePackages = "springtask")
 public class HibernateConfig {
